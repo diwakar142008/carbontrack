@@ -1,0 +1,682 @@
+/* ===========================
+   CUSTOM CSS FOR CARBON TRACKER
+   =========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #16A34A;
+    --secondary-color: #22C55E;
+    --accent-color: #06B6D4;
+    --bg-light: #F8FAFC;
+    --bg-dark: #1E293B;
+    --text-dark: #1F2937;
+    --text-light: #F8FAFC;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ===========================
+   PARTICLE BACKGROUND
+   =========================== */
+
+#particle-bg {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(22, 163, 74, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+
+@keyframes blob {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) translateX(10px) rotate(10deg);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(22, 163, 74, 0.6);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* ===========================
+   UTILITY ANIMATIONS
+   =========================== */
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.floating-leaf {
+    animation: float 4s ease-in-out infinite;
+    position: absolute;
+    pointer-events: none;
+}
+
+.animated-leaf {
+    animation: rotate360 8s linear infinite;
+}
+
+/* ===========================
+   NAVIGATION BAR
+   =========================== */
+
+#navbar {
+    backdrop-filter: blur(0px);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+#navbar.scrolled {
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.nav-link {
+    position: relative;
+    color: #475569;
+    font-weight: 600;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #16A34A, #06B6D4);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: #16A34A;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+#navbar.scrolled .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#navbar.scrolled .nav-link:hover {
+    color: #16A34A;
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+
+.hero-heading {
+    animation: fadeInDown 1s ease-out;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-buttons {
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.premium-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.premium-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.premium-btn:hover::before {
+    left: 100%;
+}
+
+.primary-btn {
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 20px 50px rgba(22, 163, 74, 0.5);
+}
+
+.secondary-btn {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(22, 163, 74, 0.5);
+}
+
+.scroll-indicator {
+    animation: bounce-slow 2s ease-in-out infinite;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+/* ===========================
+   SCROLL ANIMATIONS
+   =========================== */
+
+[data-animation="fadeInUp"] {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+[data-animation="fadeInDown"] {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+[data-animation="scaleIn"] {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 0.8s ease-out forwards;
+}
+
+[data-animation="slideInLeft"] {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+[data-animation="slideInRight"] {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* ===========================
+   CARDS AND GLASS MORPHISM
+   =========================== */
+
+.stats-card {
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stats-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.stats-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.stats-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.dashboard-card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.dashboard-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.dashboard-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.dashboard-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.recommendation-card {
+    transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-15px);
+}
+
+.eco-tip {
+    scroll-snap-align: start;
+}
+
+.testimonial-card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.testimonial-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.testimonial-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.feature-card {
+    animation: scaleIn 0.8s ease-out forwards;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.05s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(4) {
+    animation-delay: 0.15s;
+}
+
+.feature-card:nth-child(5) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(6) {
+    animation-delay: 0.25s;
+}
+
+.feature-card:nth-child(7) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(8) {
+    animation-delay: 0.35s;
+}
+
+/* ===========================
+   CALCULATOR SECTION
+   =========================== */
+
+#calculator-form input,
+#calculator-form textarea {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#calculator-form input:focus,
+#calculator-form textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.2);
+}
+
+/* ===========================
+   COUNTER ANIMATION
+   =========================== */
+
+.counter,
+.counter-card {
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===========================
+   FAQ SECTION
+   =========================== */
+
+.faq-item {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.faq-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.faq-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.faq-item:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.faq-item:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.faq-button {
+    cursor: pointer;
+}
+
+.faq-button i {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-button i {
+    transform: rotate(180deg);
+}
+
+/* ===========================
+   HORIZONTAL SCROLL
+   =========================== */
+
+.scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(22, 163, 74, 0.3) rgba(0, 0, 0, 0.1);
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(22, 163, 74, 0.3);
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(22, 163, 74, 0.5);
+}
+
+.horizontal-scroll {
+    scroll-behavior: smooth;
+}
+
+/* ===========================
+   CONTACT FORM
+   =========================== */
+
+#contact-form input,
+#contact-form textarea {
+    transition: all 0.3s ease;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(22, 163, 74, 0.2);
+}
+
+/* ===========================
+   SOCIAL ICONS
+   =========================== */
+
+.social-icon {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.social-icon:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+    .hero-heading {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .scroll-container {
+        padding-right: 20px;
+    }
+    
+    .eco-tip {
+        min-width: 100%;
+    }
+}
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===========================
+   DARK MODE SUPPORT
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0f172a;
+        color: #f1f5f9;
+    }
+    
+    .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
+
+.text-gradient {
+    background: linear-gradient(135deg, #16A34A 0%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===========================
+   SCROLL PROGRESS BAR
+   =========================== */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #16A34A, #06B6D4);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}

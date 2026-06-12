@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Carbon Footprint Tracker - Track Your Impact, Build a Greener Future
+    </title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+  </head>
+  <body class="site-body bg-slate-50 text-slate-900 font-poppins overflow-x-hidden">
+    <!-- Particle Background -->
+    <div id="particle-bg" class="fixed inset-0 -z-10"></div>
+
+    <!-- Navigation Bar -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-50 transition-all duration-300"
+    >
+      <div class="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a href="#home" class="brand-lockup flex items-center space-x-2 group">
+            <div class="brand-mark relative">
+              <i
+                class="fas fa-leaf text-emerald-500 text-2xl"
+              ></i>
+            </div>
+            <span
+              class="brand-name text-2xl font-bold bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >CarbonTrack</span
+            >
+          </a>
+
+          <!-- Nav Links -->
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#calculator" class="nav-link">Calculator</a>
+            <a href="#dashboard" class="nav-link">Dashboard</a>
+            <a href="#tips" class="nav-link">Tips</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+
+          <!-- CTA Button -->
+          <a
+            href="#calculator"
+            class="nav-cta hidden md:inline-flex px-6 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105"
+          >
+            Get Started
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button
+            class="md:hidden text-2xl text-emerald-500"
+            id="mobile-menu-toggle"
+            aria-label="Toggle navigation menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mobile-menu-panel">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#calculator" class="nav-link">Calculator</a>
+          <a href="#dashboard" class="nav-link">Dashboard</a>
+          <a href="#tips" class="nav-link">Tips</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-shell relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-20"
+    >
+      <!-- Hero Content -->
+      <div
+        class="hero-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="hero-kicker">
+              <i class="fas fa-seedling"></i>
+              Climate action, made measurable
+            </span>
+            <h1
+              class="hero-heading text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight"
+            >
+              Measure your footprint.
+              <span>Make every choice count.</span>
+            </h1>
+
+            <p
+              class="hero-subtitle text-lg sm:text-xl text-slate-600 max-w-3xl mb-10 leading-relaxed"
+            >
+              CarbonTrack turns everyday habits into clear insights, quick wins,
+              and practical goals so sustainable living feels visible and
+              achievable.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div
+              class="hero-buttons flex flex-col sm:flex-row gap-4 items-start mb-12"
+            >
+              <a
+                href="#calculator"
+                class="premium-btn primary-btn px-10 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105"
+              >
+                <i class="fas fa-calculator mr-2"></i> Calculate Now
+              </a>
+              <a
+                href="#dashboard"
+                class="premium-btn secondary-btn px-10 py-4 bg-white/20 backdrop-blur-md text-slate-900 rounded-full font-bold text-lg border-2 border-white/30 hover:border-emerald-400/50 shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+                <i class="fas fa-chart-line mr-2"></i> View Dashboard
+              </a>
+            </div>
+
+            <div class="hero-proof-grid">
+              <div>
+                <strong>2.5M kg</strong>
+                <span>CO2 tracked</span>
+              </div>
+              <div>
+                <strong>30%</strong>
+                <span>target reduction</span>
+              </div>
+              <div>
+                <strong>4 steps</strong>
+                <span>to first insight</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="CarbonTrack dashboard preview">
+            <div class="hero-dashboard-card">
+              <div class="dashboard-topline">
+                <div>
+                  <span>Monthly footprint</span>
+                  <strong>482 kg CO2</strong>
+                </div>
+                <span class="trend-pill">
+                  <i class="fas fa-arrow-trend-down"></i>
+                  12%
+                </span>
+              </div>
+
+              <div class="impact-ring">
+                <div class="impact-ring-inner">
+                  <span>Goal</span>
+                  <strong>68%</strong>
+                </div>
+              </div>
+
+              <div class="mini-bars" aria-hidden="true">
+                <span style="height: 48%"></span>
+                <span style="height: 72%"></span>
+                <span style="height: 55%"></span>
+                <span style="height: 38%"></span>
+                <span style="height: 64%"></span>
+                <span style="height: 31%"></span>
+              </div>
+
+              <div class="impact-actions">
+                <div>
+                  <i class="fas fa-bus"></i>
+                  Transit swap
+                </div>
+                <div>
+                  <i class="fas fa-bolt"></i>
+                  Energy cut
+                </div>
+                <div>
+                  <i class="fas fa-utensils"></i>
+                  Food choice
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-floating-note">
+              <i class="fas fa-leaf"></i>
+              <span>Next best action: bike twice this week</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div
+          class="scroll-indicator flex justify-center absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <div class="flex flex-col items-center space-y-3">
+            <p class="text-sm text-white/80 font-medium">Scroll to explore</p>
+            <div
+              class="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center"
+            >
+              <div
+                class="w-1 h-2 bg-white rounded-full mt-2 animate-bounce"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Content -->
+          <div class="space-y-8">
+            <div>
+              <span
+                class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+                >About Us</span
+              >
+              <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+                Understanding Your
+                <span
+                  class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+                  >Carbon Impact</span
+                >
+              </h2>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed">
+              Carbon footprint represents the total amount of greenhouse gases
+              emitted by human activities. Our mission is to make tracking and
+              reducing your environmental impact simple, engaging, and
+              rewarding.
+            </p>
+
+            <p class="text-lg text-slate-600 leading-relaxed">
+              We provide you with comprehensive tools to understand your
+              consumption patterns, track progress, and discover practical ways
+              to live more sustainably without compromising your lifestyle.
+            </p>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-6 pt-6">
+              <div
+                class="stats-card bg-gradient-to-br from-emerald-500 to-emerald-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div
+                  class="text-4xl font-black mb-2 counter"
+                  data-target="2500000"
+                >
+                  0
+                </div>
+                <p class="text-sm font-semibold opacity-90">
+                  CO₂ Emissions Tracked (kg)
+                </p>
+              </div>
+              <div
+                class="stats-card bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div
+                  class="text-4xl font-black mb-2 counter"
+                  data-target="125000"
+                >
+                  0
+                </div>
+                <p class="text-sm font-semibold opacity-90">Trees Saved</p>
+              </div>
+              <div
+                class="stats-card bg-gradient-to-br from-emerald-400 to-emerald-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div
+                  class="text-4xl font-black mb-2 counter"
+                  data-target="500000"
+                >
+                  0
+                </div>
+                <p class="text-sm font-semibold opacity-90">Green Actions</p>
+              </div>
+              <div
+                class="stats-card bg-gradient-to-br from-cyan-400 to-cyan-500 text-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div
+                  class="text-4xl font-black mb-2 counter"
+                  data-target="850000"
+                >
+                  0
+                </div>
+                <p class="text-sm font-semibold opacity-90">Users Joined</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div
+            class="relative h-96 sm:h-full min-h-96 flex items-center justify-center"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-emerald-300 to-cyan-300 rounded-3xl blur-3xl opacity-20"
+            ></div>
+            <div class="relative">
+              <div
+                class="w-80 h-80 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-emerald-400 via-cyan-400 to-blue-500 flex items-center justify-center"
+                >
+                  <i
+                    class="fas fa-earth-americas text-white text-9xl opacity-30"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carbon Calculator Section -->
+    <section
+      id="calculator"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-20 right-20 w-96 h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+        ></div>
+        <div
+          class="absolute bottom-20 left-20 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+        ></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >Calculator</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            Calculate Your
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Carbon Footprint</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Calculator Form -->
+          <div
+            class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl hover:border-white/30 transition-all duration-300"
+          >
+            <form id="carbon-calculator" class="space-y-6">
+              <!-- Transport -->
+              <div class="space-y-2">
+                <label
+                  class="text-white font-semibold flex items-center space-x-2"
+                >
+                  <i class="fas fa-car text-emerald-400"></i>
+                  <span>Transport (km/month)</span>
+                </label>
+                <input
+                  type="number"
+                  name="transport"
+                  placeholder="0"
+                  value="500"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-emerald-400 transition-all duration-300"
+                />
+              </div>
+
+              <!-- Electricity -->
+              <div class="space-y-2">
+                <label
+                  class="text-white font-semibold flex items-center space-x-2"
+                >
+                  <i class="fas fa-lightbulb text-cyan-400"></i>
+                  <span>Electricity (kWh/month)</span>
+                </label>
+                <input
+                  type="number"
+                  name="electricity"
+                  placeholder="0"
+                  value="400"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-cyan-400 transition-all duration-300"
+                />
+              </div>
+
+              <!-- Food -->
+              <div class="space-y-2">
+                <label
+                  class="text-white font-semibold flex items-center space-x-2"
+                >
+                  <i class="fas fa-apple text-red-400"></i>
+                  <span>Meat Consumption (kg/month)</span>
+                </label>
+                <input
+                  type="number"
+                  name="food"
+                  placeholder="0"
+                  value="20"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-red-400 transition-all duration-300"
+                />
+              </div>
+
+              <!-- Waste -->
+              <div class="space-y-2">
+                <label
+                  class="text-white font-semibold flex items-center space-x-2"
+                >
+                  <i class="fas fa-trash text-orange-400"></i>
+                  <span>Waste (kg/month)</span>
+                </label>
+                <input
+                  type="number"
+                  name="waste"
+                  placeholder="0"
+                  value="50"
+                  class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-orange-400 transition-all duration-300"
+                />
+              </div>
+
+              <!-- Calculate Button -->
+              <button
+                type="submit"
+                class="w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105 mt-8"
+              >
+                <i class="fas fa-calculator mr-2"></i> Calculate Carbon
+                Footprint
+              </button>
+            </form>
+          </div>
+
+          <!-- Results Display -->
+          <div class="space-y-8">
+            <div class="text-white">
+              <p
+                class="text-sm uppercase tracking-widest text-emerald-400 font-bold mb-4"
+              >
+                Your Monthly Carbon Footprint
+              </p>
+              <div class="text-6xl font-black mb-2">
+                <span id="result-co2">0</span
+                ><span class="text-4xl text-emerald-400">kg</span>
+              </div>
+              <p id="result-eq" class="text-lg text-white/70">
+                Equivalent to driving 0 km
+              </p>
+            </div>
+
+            <!-- Circular Progress -->
+            <div class="relative w-64 h-64 mx-auto">
+              <svg class="w-full h-full" viewBox="0 0 200 200">
+                <!-- Background circle -->
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.1)"
+                  stroke-width="8"
+                />
+                <!-- Progress circle -->
+                <circle
+                  id="progress-circle"
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  fill="none"
+                  stroke="url(#gradient)"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  style="
+                    stroke-dasharray: 565;
+                    stroke-dashoffset: 565;
+                    transform: rotate(-90deg);
+                    transform-origin: 100px 100px;
+                    transition: stroke-dashoffset 1s ease-out;
+                  "
+                />
+                <defs>
+                  <linearGradient
+                    id="gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      style="stop-color: #16a34a; stop-opacity: 1"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color: #06b6d4; stop-opacity: 1"
+                    />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <p class="text-white/70 text-sm">Carbon Level</p>
+                  <p
+                    id="progress-percent"
+                    class="text-4xl font-black text-white"
+                  >
+                    0%
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-emerald-500/20 border border-emerald-500/50 rounded-xl p-4"
+            >
+              <p class="text-white text-sm">
+                <i class="fas fa-leaf text-emerald-400 mr-2"></i>
+                <strong>Tip:</strong> Average monthly carbon footprint is around
+                600 kg. Your goal should be to reduce it by 30% through
+                sustainable choices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section
+      id="dashboard"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Dashboard</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            Track Your
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Progress</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Daily Card -->
+          <div
+            class="dashboard-card backdrop-blur-xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:border-emerald-400"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-bold text-slate-900">Daily Carbon</h3>
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center"
+              >
+                <i class="fas fa-sun text-white text-lg"></i>
+              </div>
+            </div>
+            <div class="text-4xl font-black text-emerald-600 mb-2">
+              <span class="counter-card" data-target="23">0</span> kg
+            </div>
+            <p class="text-sm text-slate-600">+2% from yesterday</p>
+          </div>
+
+          <!-- Weekly Card -->
+          <div
+            class="dashboard-card backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:border-cyan-400"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-bold text-slate-900">Weekly Carbon</h3>
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center"
+              >
+                <i class="fas fa-calendar-week text-white text-lg"></i>
+              </div>
+            </div>
+            <div class="text-4xl font-black text-cyan-600 mb-2">
+              <span class="counter-card" data-target="145">0</span> kg
+            </div>
+            <p class="text-sm text-slate-600">-5% from last week</p>
+          </div>
+
+          <!-- Monthly Card -->
+          <div
+            class="dashboard-card backdrop-blur-xl bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:border-blue-400"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-bold text-slate-900">Monthly Carbon</h3>
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center"
+              >
+                <i class="fas fa-calendar text-white text-lg"></i>
+              </div>
+            </div>
+            <div class="text-4xl font-black text-blue-600 mb-2">
+              <span class="counter-card" data-target="625">0</span> kg
+            </div>
+            <p class="text-sm text-slate-600">-12% from last month</p>
+          </div>
+
+          <!-- Total Reduction Card -->
+          <div
+            class="dashboard-card backdrop-blur-xl bg-gradient-to-br from-white to-green-50 border border-green-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:border-green-400"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-bold text-slate-900">Total Reduction</h3>
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
+              >
+                <i class="fas fa-arrow-trend-down text-white text-lg"></i>
+              </div>
+            </div>
+            <div class="text-4xl font-black text-green-600 mb-2">
+              <span class="counter-card" data-target="2850">0</span> kg
+            </div>
+            <p class="text-sm text-slate-600">Total saved this year</p>
+          </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div
+          class="mt-12 backdrop-blur-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 rounded-3xl p-8 shadow-lg"
+        >
+          <h3 class="text-2xl font-bold text-slate-900 mb-8">Monthly Trend</h3>
+          <div class="flex items-end justify-between gap-4 h-64">
+            <div
+              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
+              style="height: 45%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                Jan
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
+              style="height: 52%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                Feb
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
+              style="height: 68%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                Mar
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
+              style="height: 55%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                Apr
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
+              style="height: 40%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                May
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
+              style="height: 35%"
+            >
+              <div
+                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
+              >
+                Jun
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section
+      id="recommendations"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute top-20 left-20 w-96 h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+        ></div>
+        <div
+          class="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+        ></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >AI-Powered</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            Personalized
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Recommendations</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Transport -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-emerald-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-bus text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">
+              Use Public Transport
+            </h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Switch to buses, trains, or carpooling to reduce transport
+              emissions by up to 80%. Save money and reduce traffic congestion.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-emerald-400 font-semibold text-sm"
+                >Impact: High</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-emerald-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Electricity -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-cyan-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-lightbulb text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Save Electricity</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Use LED bulbs, unplug devices, and invest in renewable energy.
+              Reduce your electricity consumption by 30-40% easily.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-cyan-400 font-semibold text-sm"
+                >Impact: High</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-cyan-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Plastic -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-blue-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-recycle text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">
+              Reduce Plastic Usage
+            </h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Use reusable bags, bottles, and containers. Eliminate single-use
+              plastics from your daily routine today.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-blue-400 font-semibold text-sm"
+                >Impact: Medium</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-blue-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Trees -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-green-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-tree text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Plant Trees</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Join our tree-planting initiative. One tree absorbs 48 lbs of CO₂
+              annually and provides countless benefits.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-green-400 font-semibold text-sm"
+                >Impact: High</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-green-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Food -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-orange-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-leaf text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Eat Plant-Based</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Reduce meat consumption. Plant-based diets have 75% lower carbon
+              footprint than meat-heavy diets.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-orange-400 font-semibold text-sm"
+                >Impact: Very High</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-orange-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+
+          <!-- Goals -->
+          <div
+            class="recommendation-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-pink-400/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-target text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Set Green Goals</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Create achievable sustainability goals. Track progress and get
+              rewarded for reaching milestones.
+            </p>
+            <div
+              class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between"
+            >
+              <span class="text-pink-400 font-semibold text-sm"
+                >Impact: Medium</span
+              >
+              <i
+                class="fas fa-arrow-right text-white/50 group-hover:text-pink-400 transition-colors duration-300"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eco Tips Section -->
+    <section
+      id="tips"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-cyan-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Daily Wisdom</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            Eco
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Tips & Tricks</span
+            >
+          </h2>
+          <p class="text-lg text-slate-600 mt-6 max-w-2xl mx-auto">
+            Small actions lead to big changes. Discover practical tips to
+            integrate sustainable living into your daily routine.
+          </p>
+        </div>
+
+        <div class="scroll-container horizontal-scroll pb-4">
+          <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+            <!-- Tip 1 -->
+            <div
+              class="eco-tip flex-shrink-0 w-96 backdrop-blur-xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 snap-start"
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-water text-white text-lg"></i>
+                </div>
+                <span
+                  class="text-xs font-bold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full"
+                  >Quick Tip</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">
+                Save Water Daily
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Take shorter showers, fix leaky faucets, and install
+                water-efficient fixtures. Save 37,000 gallons of water per year.
+              </p>
+              <div
+                class="flex items-center space-x-2 text-emerald-600 font-semibold text-sm"
+              >
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- Tip 2 -->
+            <div
+              class="eco-tip flex-shrink-0 w-96 backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 snap-start"
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-battery-full text-white text-lg"></i>
+                </div>
+                <span
+                  class="text-xs font-bold bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full"
+                  >Energy Tip</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">
+                Optimize Energy Use
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Use power strips, switch to renewable energy, and adjust your
+                thermostat by 2-3 degrees. Reduce energy bills by 20%.
+              </p>
+              <div
+                class="flex items-center space-x-2 text-cyan-600 font-semibold text-sm"
+              >
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- Tip 3 -->
+            <div
+              class="eco-tip flex-shrink-0 w-96 backdrop-blur-xl bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 snap-start"
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-bag-shopping text-white text-lg"></i>
+                </div>
+                <span
+                  class="text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full"
+                  >Lifestyle Tip</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">
+                Shop Sustainably
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Buy local, choose eco-friendly products, and support sustainable
+                brands. Reduce packaging waste significantly.
+              </p>
+              <div
+                class="flex items-center space-x-2 text-blue-600 font-semibold text-sm"
+              >
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- Tip 4 -->
+            <div
+              class="eco-tip flex-shrink-0 w-96 backdrop-blur-xl bg-gradient-to-br from-white to-green-50 border border-green-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 snap-start"
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-bicycle text-white text-lg"></i>
+                </div>
+                <span
+                  class="text-xs font-bold bg-green-100 text-green-700 px-3 py-1 rounded-full"
+                  >Travel Tip</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">
+                Eco-Friendly Commute
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                Bike, walk, or use electric vehicles. Reduce transportation
+                emissions by 90% with daily conscious choices.
+              </p>
+              <div
+                class="flex items-center space-x-2 text-green-600 font-semibold text-sm"
+              >
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section
+      id="features"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >Powerful Features</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            Everything You Need to
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Go Green</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-emerald-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-calculator text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Carbon Calculator</h3>
+            <p class="text-white/70 text-sm">
+              Advanced algorithm calculates your exact carbon footprint from
+              lifestyle data.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-chart-line text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              Dashboard Analytics
+            </h3>
+            <p class="text-white/70 text-sm">
+              Real-time visualizations of your carbon emissions and progress
+              tracking.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-leaf text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Eco Tips</h3>
+            <p class="text-white/70 text-sm">
+              Daily environmental tips and sustainable living recommendations.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-target text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Goal Tracking</h3>
+            <p class="text-white/70 text-sm">
+              Set and achieve sustainability goals with milestone tracking and
+              rewards.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-robot text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">AI Insights</h3>
+            <p class="text-white/70 text-sm">
+              Personalized recommendations powered by machine learning
+              algorithms.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-pink-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-gift text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Rewards System</h3>
+            <p class="text-white/70 text-sm">
+              Earn badges and rewards for reaching sustainability milestones.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-orange-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-users text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Community</h3>
+            <p class="text-white/70 text-sm">
+              Join challenges with other eco-conscious users and share progress.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-lightbulb text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Smart Alerts</h3>
+            <p class="text-white/70 text-sm">
+              Get notified about carbon spikes and receive reduction
+              recommendations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section
+      id="testimonials"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Success Stories</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            What Our
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Users Say</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div
+            class="testimonial-card backdrop-blur-xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          >
+            <div class="flex items-center space-x-1 mb-4">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+            <p class="text-slate-700 text-lg mb-6 leading-relaxed">
+              "CarbonTrack helped me reduce my carbon footprint by 40% in just 6
+              months. The personalized recommendations are practical and easy to
+              implement!"
+            </p>
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-white font-bold"
+              >
+                S
+              </div>
+              <div>
+                <p class="font-bold text-slate-900">Sarah Johnson</p>
+                <p class="text-sm text-slate-600">Environmental Consultant</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="testimonial-card backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          >
+            <div class="flex items-center space-x-1 mb-4">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+            <p class="text-slate-700 text-lg mb-6 leading-relaxed">
+              "The dashboard is incredibly intuitive. I love tracking my daily
+              progress and seeing the impact of my sustainable choices."
+            </p>
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-white font-bold"
+              >
+                M
+              </div>
+              <div>
+                <p class="font-bold text-slate-900">Michael Chen</p>
+                <p class="text-sm text-slate-600">Sustainability Manager</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div
+            class="testimonial-card backdrop-blur-xl bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          >
+            <div class="flex items-center space-x-1 mb-4">
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+              <i class="fas fa-star text-yellow-400"></i>
+            </div>
+            <p class="text-slate-700 text-lg mb-6 leading-relaxed">
+              "This app changed my perspective on sustainability. The eco tips
+              are practical and the community challenges keep me motivated!"
+            </p>
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-white font-bold"
+              >
+                E
+              </div>
+              <div>
+                <p class="font-bold text-slate-900">Emma Rodriguez</p>
+                <p class="text-sm text-slate-600">Eco Activist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >Common Questions</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            Frequently Asked
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Questions</span
+            >
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div
+            class="faq-item backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden transition-all duration-300"
+          >
+            <button
+              class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-300"
+            >
+              <span class="text-lg font-semibold text-white"
+                >What is a carbon footprint?</span
+              >
+              <i
+                class="fas fa-chevron-down text-emerald-400 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              class="faq-content max-h-0 overflow-hidden transition-all duration-300"
+            >
+              <div class="px-6 py-4 text-white/70 border-t border-white/10">
+                <p>
+                  A carbon footprint is the total amount of greenhouse gases
+                  (primarily CO₂) produced by human activities. It measures the
+                  environmental impact of your lifestyle choices including
+                  transportation, energy use, food consumption, and waste.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div
+            class="faq-item backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden transition-all duration-300"
+          >
+            <button
+              class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-300"
+            >
+              <span class="text-lg font-semibold text-white"
+                >How accurate is the calculator?</span
+              >
+              <i
+                class="fas fa-chevron-down text-emerald-400 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              class="faq-content max-h-0 overflow-hidden transition-all duration-300"
+            >
+              <div class="px-6 py-4 text-white/70 border-t border-white/10">
+                <p>
+                  Our calculator uses EPA-certified formulas and internationally
+                  recognized emission factors. It provides 85-95% accuracy based
+                  on the data you provide. The more detailed your information,
+                  the more accurate the results.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div
+            class="faq-item backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden transition-all duration-300"
+          >
+            <button
+              class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-300"
+            >
+              <span class="text-lg font-semibold text-white"
+                >Can I reduce my carbon footprint to zero?</span
+              >
+              <i
+                class="fas fa-chevron-down text-emerald-400 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              class="faq-content max-h-0 overflow-hidden transition-all duration-300"
+            >
+              <div class="px-6 py-4 text-white/70 border-t border-white/10">
+                <p>
+                  While achieving a zero carbon footprint is challenging, you
+                  can significantly reduce it through conscious choices. Most
+                  users reduce their footprint by 30-50% through lifestyle
+                  changes. Carbon offsetting can help you reach carbon
+                  neutrality.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div
+            class="faq-item backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden transition-all duration-300"
+          >
+            <button
+              class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-300"
+            >
+              <span class="text-lg font-semibold text-white"
+                >Is my data private and secure?</span
+              >
+              <i
+                class="fas fa-chevron-down text-emerald-400 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              class="faq-content max-h-0 overflow-hidden transition-all duration-300"
+            >
+              <div class="px-6 py-4 text-white/70 border-t border-white/10">
+                <p>
+                  Yes, absolutely! We use military-grade encryption (AES-256) to
+                  protect your data. Your information is never sold or shared
+                  with third parties. We comply with GDPR, CCPA, and
+                  international privacy standards.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div
+            class="faq-item backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden transition-all duration-300"
+          >
+            <button
+              class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-300"
+            >
+              <span class="text-lg font-semibold text-white"
+                >How often should I update my carbon calculation?</span
+              >
+              <i
+                class="fas fa-chevron-down text-emerald-400 transition-transform duration-300"
+              ></i>
+            </button>
+            <div
+              class="faq-content max-h-0 overflow-hidden transition-all duration-300"
+            >
+              <div class="px-6 py-4 text-white/70 border-t border-white/10">
+                <p>
+                  We recommend updating your calculation monthly to track
+                  progress. Daily or weekly updates are optional but help you
+                  see immediate impacts of your sustainable choices and stay
+                  motivated.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-cyan-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Get In Touch</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            Contact
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Us</span
+            >
+          </h2>
+          <p class="text-lg text-slate-600 mt-6 max-w-2xl mx-auto">
+            Have questions? We'd love to hear from you. Send us a message and
+            we'll respond as soon as possible.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div
+            class="backdrop-blur-xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+          >
+            <form id="contact-form" class="space-y-6">
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 mb-2"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 mb-2"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 mb-2"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  placeholder="Your subject here"
+                  class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 mb-2"
+                  >Message</label
+                >
+                <textarea
+                  placeholder="Your message here..."
+                  rows="5"
+                  class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105"
+              >
+                <i class="fas fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="space-y-8">
+            <div
+              class="backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900 mb-1">Address</h3>
+                  <p class="text-slate-600">
+                    123 Green Street, Earth City, EC 12345
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-phone text-white text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900 mb-1">Phone</h3>
+                  <p class="text-slate-600">+1 (555) 123-4567</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-envelope text-white text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900 mb-1">Email</h3>
+                  <p class="text-slate-600">hello@carbontrack.com</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="pt-4">
+              <h3 class="text-lg font-bold text-slate-900 mb-4">Follow Us</h3>
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="social-icon w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="fab fa-facebook-f text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="social-icon w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="fab fa-twitter text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="social-icon w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="fab fa-instagram text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="social-icon w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-110"
+                >
+                  <i class="fab fa-linkedin-in text-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section
+      class="relative py-16 overflow-hidden bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500"
+    >
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-blob"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
+        ></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center">
+          <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">
+            Stay Updated on Sustainability
+          </h2>
+          <p class="text-lg text-white/90 mb-8">
+            Get weekly eco tips, carbon reduction strategies, and exclusive
+            offers delivered to your inbox.
+          </p>
+
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-1 px-6 py-3 bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-white/70 rounded-full focus:outline-none focus:border-white/50 transition-all duration-300"
+            />
+            <button
+              type="submit"
+              class="px-8 py-3 bg-white text-emerald-600 font-bold rounded-full hover:shadow-lg hover:shadow-black/20 transition-all duration-300 transform hover:scale-105"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-12 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Brand -->
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-leaf text-emerald-400 text-2xl"></i>
+              <span class="text-2xl font-bold">CarbonTrack</span>
+            </div>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Making sustainability accessible to everyone. Track, reduce, and
+              offset your carbon footprint.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#home"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#calculator"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#dashboard"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div>
+            <h3 class="font-bold text-lg mb-4">Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="font-bold text-lg mb-4">Contact</h3>
+            <ul class="space-y-3 text-sm text-white/70">
+              <li class="flex items-center space-x-2">
+                <i class="fas fa-envelope"></i>
+                <span>hello@carbontrack.com</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <i class="fas fa-phone"></i>
+                <span>+1 (555) 123-4567</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Green Street, Earth City</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <p class="text-sm text-white/70 text-center sm:text-left">
+            &copy; 2024 CarbonTrack. All rights reserved. Designed with
+            <i class="fas fa-leaf text-emerald-400 mx-1"></i> for a sustainable
+            future.
+          </p>
+          <div class="flex space-x-4 mt-4 sm:mt-0">
+            <a
+              href="#"
+              class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+            >
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+            >
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+            >
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white/70 hover:text-emerald-400 transition-colors duration-300"
+            >
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/calculator.js" defer></script>
+    <script src="js/animation.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
