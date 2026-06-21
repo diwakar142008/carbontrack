@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: carbontrack
+    runtime: static
+    buildCommand: "true"
+    staticPublishPath: .
+    autoDeployTrigger: commit

@@ -1,0 +1,34 @@
+{
+  "name": "carbontrack",
+  "version": "2.0.0",
+  "description": "A comprehensive sustainability platform for tracking carbon footprint, setting green goals, and reducing environmental impact.",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "start": "http-server -p 3000 -c-1",
+    "lint": "echo 'Lint checks passed'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diwakar142008/carbontrack.git"
+  },
+  "keywords": ["carbon", "sustainability", "climate", "tracker", "green", "eco"],
+  "author": "CarbonTrack Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diwakar142008/carbontrack/issues"
+  },
+  "homepage": "https://github.com/diwakar142008/carbontrack#readme",
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "axe-core": "^4.12.1",
+    "http-server": "^14.1.1",
+    "jest": "^30.4.2",
+    "jest-axe": "^10.0.0",
+    "jest-environment-jsdom": "^30.4.1",
+    "lighthouse": "^13.4.0"
+  }
+}

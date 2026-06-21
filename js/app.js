@@ -25,6 +25,7 @@ function initializeApp() {
   initFormValidation();
   initPerfectScroll();
   initAccessibility();
+  initMonthlyTrendChart();
 }
 
 // ========================================
@@ -452,6 +453,143 @@ function initAccessibility() {
   });
 
   console.log("✓ Accessibility features initialized");
+}
+
+// ========================================
+// MONTHLY TREND CHART (Chart.js)
+// ========================================
+
+function initMonthlyTrendChart() {
+  const canvas = document.getElementById('monthly-trend-chart');
+  if (!canvas || typeof Chart === 'undefined') {
+    console.warn('⚠ Chart.js or canvas not available');
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+
+  // Gradient fills
+  const gradientBar = ctx.createLinearGradient(0, 0, 0, 320);
+  gradientBar.addColorStop(0, 'rgba(16, 185, 129, 0.92)');
+  gradientBar.addColorStop(0.5, 'rgba(6, 182, 212, 0.72)');
+  gradientBar.addColorStop(1, 'rgba(6, 182, 212, 0.18)');
+
+  const gradientTarget = ctx.createLinearGradient(0, 0, 0, 320);
+  gradientTarget.addColorStop(0, 'rgba(167, 243, 208, 0.55)');
+  gradientTarget.addColorStop(1, 'rgba(167, 243, 208, 0.08)');
+
+  const gradientLine = ctx.createLinearGradient(0, 0, canvas.width, 0);
+  gradientLine.addColorStop(0, '#10b981');
+  gradientLine.addColorStop(1, '#06b6d4');
+
+  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const emissions = [580, 620, 710, 650, 530, 482, 460, 490, 440, 410, 390, 365];
+  const target = new Array(12).fill(420);
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'CO₂ Emissions (kg)',
+          data: emissions,
+          backgroundColor: gradientBar,
+          borderRadius: 6,
+          borderSkipped: false,
+          barPercentage: 0.6,
+          categoryPercentage: 0.7,
+          hoverBackgroundColor: 'rgba(16, 185, 129, 1)',
+        },
+        {
+          label: 'Target',
+          data: target,
+          type: 'line',
+          borderColor: gradientLine,
+          borderWidth: 2.5,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: '#10b981',
+          pointHoverBorderColor: '#fff',
+          pointHoverBorderWidth: 2,
+          fill: {
+            target: 'origin',
+            above: gradientTarget,
+          },
+          tension: 0.4,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      animation: {
+        duration: 1200,
+        easing: 'easeOutQuart',
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          backgroundColor: 'rgba(6, 20, 17, 0.92)',
+          titleColor: '#a7f3d0',
+          bodyColor: '#fff',
+          titleFont: { family: 'Poppins', weight: '600', size: 13 },
+          bodyFont: { family: 'Poppins', size: 13 },
+          padding: 14,
+          cornerRadius: 8,
+          displayColors: true,
+          boxPadding: 6,
+          callbacks: {
+            label: function (context) {
+              if (context.dataset.label === 'Target') {
+                return 'Target: ' + context.parsed.y + ' kg';
+              }
+              return 'Emissions: ' + context.parsed.y + ' kg';
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            color: '#64748b',
+            font: { family: 'Poppins', weight: '500', size: 12 },
+          },
+          border: { display: false },
+        },
+        y: {
+          beginAtZero: false,
+          min: 200,
+          max: 800,
+          grid: {
+            color: 'rgba(8, 28, 21, 0.06)',
+            drawBorder: false,
+          },
+          ticks: {
+            color: '#64748b',
+            font: { family: 'Poppins', weight: '500', size: 12 },
+            callback: function (value) {
+              return value + ' kg';
+            },
+            stepSize: 100,
+          },
+          border: { display: false },
+        },
+      },
+    },
+  });
+
+  console.log('✓ Monthly trend chart initialized');
 }
 
 // ========================================

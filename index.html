@@ -38,7 +38,9 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/animation.css" />
   </head>
-  <body class="site-body bg-slate-50 text-slate-900 font-poppins overflow-x-hidden">
+  <body
+    class="site-body bg-slate-50 text-slate-900 font-poppins overflow-x-hidden"
+  >
     <!-- Particle Background -->
     <div id="particle-bg" class="fixed inset-0 -z-10"></div>
 
@@ -50,11 +52,12 @@
       <div class="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
-          <a href="#home" class="brand-lockup flex items-center space-x-2 group">
+          <a
+            href="#home"
+            class="brand-lockup flex items-center space-x-2 group"
+          >
             <div class="brand-mark relative">
-              <i
-                class="fas fa-leaf text-emerald-500 text-2xl"
-              ></i>
+              <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
             </div>
             <span
               class="brand-name text-2xl font-bold bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
@@ -654,68 +657,25 @@
         <div
           class="mt-12 backdrop-blur-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 rounded-3xl p-8 shadow-lg"
         >
-          <h3 class="text-2xl font-bold text-slate-900 mb-8">Monthly Trend</h3>
-          <div class="flex items-end justify-between gap-4 h-64">
-            <div
-              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
-              style="height: 45%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                Jan
-              </div>
+          <div class="flex items-center justify-between mb-8">
+            <h3 class="text-2xl font-bold text-slate-900">Monthly Trend</h3>
+            <div class="flex items-center gap-4 text-sm">
+              <span class="flex items-center gap-2">
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500"
+                ></span>
+                <span class="text-slate-600">Carbon Emissions</span>
+              </span>
+              <span class="flex items-center gap-2">
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-gradient-to-r from-emerald-300 to-emerald-400"
+                ></span>
+                <span class="text-slate-600">Target</span>
+              </span>
             </div>
-            <div
-              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
-              style="height: 52%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                Feb
-              </div>
-            </div>
-            <div
-              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
-              style="height: 68%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                Mar
-              </div>
-            </div>
-            <div
-              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
-              style="height: 55%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                Apr
-              </div>
-            </div>
-            <div
-              class="flex-1 bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-t-lg hover:from-cyan-600 hover:to-cyan-500 transition-all duration-300 group cursor-pointer"
-              style="height: 40%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                May
-              </div>
-            </div>
-            <div
-              class="flex-1 bg-gradient-to-t from-emerald-500 to-emerald-400 rounded-t-lg hover:from-emerald-600 hover:to-emerald-500 transition-all duration-300 group cursor-pointer"
-              style="height: 35%"
-            >
-              <div
-                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center text-white font-bold text-sm pt-2"
-              >
-                Jun
-              </div>
-            </div>
+          </div>
+          <div class="relative" style="height: 320px">
+            <canvas id="monthly-trend-chart"></canvas>
           </div>
         </div>
       </div>
@@ -1311,6 +1271,395 @@
                 <p class="text-sm text-slate-600">Eco Activist</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hackathon: Problem Statement Section -->
+    <section
+      id="problem-statement"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >Problem Statement</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            The Climate Crisis
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Needs Action</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-red-400/50 transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-temperature-high text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">
+              Rising Temperatures
+            </h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Global temperatures have risen by 1.1°C since pre-industrial
+              times. We're on track to exceed 1.5°C by 2030, causing
+              irreversible damage.
+            </p>
+          </div>
+
+          <div
+            class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-orange-400/50 transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-smog text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Carbon Emissions</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Human activities emit 36.8 billion tons of CO₂ annually.
+              Transportation, energy, and food production are major
+              contributors.
+            </p>
+          </div>
+
+          <div
+            class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 hover:border-yellow-400/50 transition-all duration-300"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-seedling text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Lack of Awareness</h3>
+            <p class="text-white/70 text-sm leading-relaxed">
+              60% of people don't know their carbon footprint. Without
+              awareness, meaningful action is impossible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hackathon: Solution Approach Section -->
+    <section
+      id="solution"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Solution Approach</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            How CarbonTrack
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Solves This</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-bold">1</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Calculate</h3>
+                <p class="text-slate-600">
+                  Advanced algorithms calculate your exact carbon footprint from
+                  transportation, energy, food, waste, and water usage.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-bold">2</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Analyze</h3>
+                <p class="text-slate-600">
+                  AI-powered analytics identify patterns and provide
+                  personalized recommendations for maximum impact reduction.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-bold">3</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Act</h3>
+                <p class="text-slate-600">
+                  Set goals, track progress, earn badges, and join a community
+                  of eco-warriors committed to sustainable living.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0"
+              >
+                <span class="text-white font-bold">4</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Impact</h3>
+                <p class="text-slate-600">
+                  See your environmental impact in real-time with trees saved,
+                  CO₂ reduced, and measurable sustainability metrics.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative h-96 flex items-center justify-center">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-emerald-300 to-cyan-300 rounded-3xl blur-3xl opacity-20"
+            ></div>
+            <div class="relative bg-white rounded-3xl shadow-2xl p-8">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">Your Footprint</span>
+                  <span class="text-emerald-600 font-bold">-35%</span>
+                </div>
+                <div class="w-full bg-slate-200 rounded-full h-3">
+                  <div
+                    class="bg-gradient-to-r from-emerald-500 to-cyan-500 h-3 rounded-full"
+                    style="width: 65%"
+                  ></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                  <div class="text-center">
+                    <p class="text-3xl font-black text-emerald-600">2.4t</p>
+                    <p class="text-xs text-slate-600">CO₂ Saved</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-3xl font-black text-cyan-600">18</p>
+                    <p class="text-xs text-slate-600">Trees Planted</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hackathon: Innovation Section -->
+    <section
+      id="innovation"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-400 font-bold text-sm uppercase tracking-widest"
+            >Innovation</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-white">
+            What Makes Us
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+              >Different</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-robot text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              AI-Powered Insights
+            </h3>
+            <p class="text-white/70 text-sm">
+              Machine learning algorithms analyze your habits and provide
+              personalized recommendations for maximum impact.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-pink-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-gamepad text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Gamification</h3>
+            <p class="text-white/70 text-sm">
+              Earn badges, maintain streaks, and climb leaderboards. Making
+              sustainability fun and engaging.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-indigo-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-chart-line text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">
+              Real-time Analytics
+            </h3>
+            <p class="text-white/70 text-sm">
+              Interactive charts and visualizations show your progress and
+              environmental impact in real-time.
+            </p>
+          </div>
+
+          <div
+            class="feature-card group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:border-teal-400/50 transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+            >
+              <i class="fas fa-users text-white text-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Community Driven</h3>
+            <p class="text-white/70 text-sm">
+              Join challenges, share achievements, and inspire others to join
+              the sustainability movement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hackathon: Scalability Section -->
+    <section
+      id="scalability"
+      class="relative py-20 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-cyan-50"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-emerald-500 font-bold text-sm uppercase tracking-widest"
+            >Scalability & Impact</span
+          >
+          <h2 class="text-4xl sm:text-5xl font-black mt-4 text-slate-900">
+            Built to
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+              >Scale</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="backdrop-blur-xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 rounded-2xl p-8 shadow-lg"
+          >
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              Technical Scalability
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Modular architecture supports easy feature additions
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                <span class="text-slate-700">
+                  API-first design enables mobile app and third-party
+                  integrations
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Cloud-ready deployment on Render, AWS, or Vercel
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Database-agnostic (localStorage, Firebase, PostgreSQL)
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="backdrop-blur-xl bg-gradient-to-br from-white to-cyan-50 border border-cyan-200 rounded-2xl p-8 shadow-lg"
+          >
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              Environmental Impact
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-leaf text-cyan-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Potential to reduce 1-2 tons CO₂ per user annually
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-leaf text-cyan-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Scalable to millions of users globally
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-leaf text-cyan-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Partnerships with NGOs and government programs
+                </span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-leaf text-cyan-500 mt-1"></i>
+                <span class="text-slate-700">
+                  Carbon offset integration for neutrality goals
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div class="text-center">
+            <p class="text-4xl font-black text-emerald-600 mb-2">10M+</p>
+            <p class="text-sm text-slate-600">Target Users (Year 1)</p>
+          </div>
+          <div class="text-center">
+            <p class="text-4xl font-black text-cyan-600 mb-2">50K</p>
+            <p class="text-sm text-slate-600">Tons CO₂ Saved (Year 1)</p>
+          </div>
+          <div class="text-center">
+            <p class="text-4xl font-black text-blue-600 mb-2">100+</p>
+            <p class="text-sm text-slate-600">Countries Reached</p>
+          </div>
+          <div class="text-center">
+            <p class="text-4xl font-black text-green-600 mb-2">$0</p>
+            <p class="text-sm text-slate-600">Cost to Users</p>
           </div>
         </div>
       </div>

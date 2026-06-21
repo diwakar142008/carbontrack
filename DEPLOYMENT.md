@@ -2,6 +2,34 @@
 
 Quick guides for deploying your Carbon Footprint Tracker website to various platforms.
 
+## Render Static Site
+
+This folder is ready for Render deployment with the included `render.yaml` file.
+
+### Dashboard Settings
+1. Go to [render.com](https://render.com)
+2. Click "New" > "Static Site"
+3. Connect this Git repository
+4. Use these settings:
+   - Build Command: `true`
+   - Publish Directory: `.`
+5. Click "Create Static Site"
+
+### Blueprint Settings
+If you deploy using Render Blueprints, Render will read `render.yaml` from the project root.
+
+```yaml
+services:
+  - type: web
+    name: carbontrack
+    runtime: static
+    buildCommand: "true"
+    staticPublishPath: .
+    autoDeployTrigger: commit
+```
+
+---
+
 ## Option 1: Netlify (Recommended - Easiest)
 
 ### Step 1: Sign Up
