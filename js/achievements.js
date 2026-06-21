@@ -1,9 +1,24 @@
 /**
  * Achievements Module
- * Gamification engine for badges, levels, streaks, and eco-score
+ * Handles badges, levels, streaks, and gamification features
+ * @module achievements
  */
 
+/**
+ * CO₂ absorption rate per tree per year (kg)
+ * @constant {number}
+ */
 const TREE_ABSORPTION_KG_PER_YEAR = 20;
+
+/**
+ * Achievement level thresholds with icons and colors
+ * @type {Array<Object>}
+ * @property {string} level - Level name
+ * @property {number} min - Minimum score
+ * @property {number} max - Maximum score
+ * @property {string} icon - Font Awesome icon class
+ * @property {string} color - Gradient color classes
+ */
 const LEVEL_THRESHOLDS = [
   {
     level: "Bronze",
@@ -42,6 +57,15 @@ const LEVEL_THRESHOLDS = [
   },
 ];
 
+/**
+ * Available badges and their unlock conditions
+ * @type {Array<Object>}
+ * @property {string} id - Unique badge identifier
+ * @property {string} name - Badge display name
+ * @property {string} description - Badge description
+ * @property {string} icon - Font Awesome icon class
+ * @property {Function} condition - Function to check if badge is earned
+ */
 const BADGES = [
   {
     id: "first_calc",
@@ -115,11 +139,22 @@ const BADGES = [
   },
 ];
 
+/**
+ * Calculate green score based on emissions
+ * @param {number} monthlyTotal - User's monthly CO₂ emissions
+ * @param {number} globalAverage - Global average monthly emissions
+ * @returns {number} Green score (0-100)
+ */
 function calculateGreenScore(monthlyTotal, globalAverage) {
   const ratio = monthlyTotal / globalAverage;
   return Math.max(0, Math.min(100, Math.round(100 - ratio * 50)));
 }
 
+/**
+ * Calculate consecutive days streak
+ * @param {Object} savedData - Saved user data with daily emissions
+ * @returns {number} Streak count
+ */
 function calculateStreak(savedData) {
   if (!savedData || !Array.isArray(savedData.dailyEmissions)) return 0;
   let streak = 0;
@@ -133,6 +168,11 @@ function calculateStreak(savedData) {
   return streak;
 }
 
+/**
+ * Get achievement level based on score
+ * @param {number} score - Green score (0-100)
+ * @returns {Object} Level object with name, icon, and color
+ */
 function getLevel(score) {
   return (
     LEVEL_THRESHOLDS.find((t) => score >= t.min && score <= t.max) ||
@@ -140,6 +180,11 @@ function getLevel(score) {
   );
 }
 
+/**
+ * Get all badges earned by user
+ * @param {Object} userData - User statistics and metrics
+ * @returns {Array<Object>} List of earned badges
+ */
 function getBadges(userData) {
   const earned = [];
   BADGES.forEach((badge) => {
@@ -150,6 +195,12 @@ function getBadges(userData) {
   return earned;
 }
 
+/**
+ * Check and update user achievements
+ * @param {Object} results - Carbon calculation results
+ * @param {Object} userData - Existing user data
+ * @returns {Object} Achievement results with score, level, and badges
+ */
 function checkAchievements(results, userData = {}) {
   const score = calculateGreenScore(
     results.monthlyTotal,
@@ -174,10 +225,19 @@ function checkAchievements(results, userData = {}) {
   };
 }
 
+/**
+ * Save user statistics to localStorage
+ * @param {Object} stats - User statistics object
+ * @returns {void}
+ */
 function saveUserStats(stats) {
   localStorage.setItem("carbontrack_stats", JSON.stringify(stats));
 }
 
+/**
+ * Get user statistics from localStorage
+ * @returns {Object} User statistics object
+ */
 function getUserStats() {
   try {
     return JSON.parse(localStorage.getItem("carbontrack_stats") || "{}");
@@ -186,11 +246,20 @@ function getUserStats() {
   }
 }
 
+/**
+ * Save earned badge IDs to localStorage
+ * @param {Array<Object>} badges - List of earned badges
+ * @returns {void}
+ */
 function saveEarnedBadges(badges) {
   const ids = badges.map((b) => b.id);
   localStorage.setItem("carbontrack_badges", JSON.stringify(ids));
 }
 
+/**
+ * Get list of earned badge IDs from localStorage
+ * @returns {Array<string>} List of earned badge IDs
+ */
 function getEarnedBadges() {
   try {
     return JSON.parse(localStorage.getItem("carbontrack_badges") || "[]");
@@ -199,11 +268,20 @@ function getEarnedBadges() {
   }
 }
 
+/**
+ * Get newly earned badges (not previously earned)
+ * @param {Array<Object>} currentBadges - Currently earned badges
+ * @returns {Array<Object>} List of new badges
+ */
 function getNewBadges(currentBadges) {
   const earned = getEarnedBadges();
   return currentBadges.filter((b) => !earned.includes(b.id));
 }
 
+/**
+ * Update user streak count
+ * @returns {number} Updated streak count
+ */
 function updateStreak() {
   const stats = getUserStats();
   const lastCalc = stats.lastCalculation
@@ -228,6 +306,11 @@ function updateStreak() {
   return stats.streak;
 }
 
+/**
+ * Generate comprehensive eco report
+ * @param {Object} results - Carbon calculation results
+ * @returns {Object} Complete eco report with score, level, badges, and impact
+ */
 function generateEcoReport(results) {
   const score = calculateGreenScore(
     results.monthlyTotal,
@@ -254,6 +337,11 @@ function generateEcoReport(results) {
   };
 }
 
+/**
+ * Render achievement badges to DOM
+ * @param {Array<Object>} badges - List of badges to render
+ * @returns {Array<HTMLElement>} Array of badge elements
+ */
 function renderAchievementBadges(badges) {
   const container = document.getElementById("achievements-grid");
   if (!container) return [];
@@ -277,6 +365,12 @@ function renderAchievementBadges(badges) {
   return container;
 }
 
+/**
+ * Render level and score display
+ * @param {Object} level - Level object with name, icon, color
+ * @param {number} score - Green score value
+ * @returns {void}
+ */
 function renderLevelDisplay(level, score) {
   const levelEl = document.getElementById("eco-level");
   const scoreEl = document.getElementById("green-score-value");
@@ -295,6 +389,12 @@ function renderLevelDisplay(level, score) {
   }
 }
 
+/**
+ * Animate counter from 0 to target value
+ * @param {HTMLElement} element - DOM element to update
+ * @param {number} target - Target value
+ * @returns {void}
+ */
 function animateCounter(element, target) {
   if (!element) return;
 
@@ -306,6 +406,10 @@ function animateCounter(element, target) {
   const duration = 800;
   const startTime = performance.now();
 
+  /**
+   * Animation frame update function
+   * @param {number} now - Current timestamp
+   */
   function update(now) {
     const progress = Math.min((now - startTime) / duration, 1);
     element.textContent = Math.round(target * progress).toLocaleString();

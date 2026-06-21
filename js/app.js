@@ -2,17 +2,31 @@
 // CARBON FOOTPRINT TRACKER - MAIN APP JS
 // ========================================
 
+/**
+ * Main application entry point
+ * Initializes all components and handles global functionality
+ * @module app
+ */
+
 "use strict";
 
 // ========================================
 // INITIALIZATION & GLOBALS
 // ========================================
 
+/**
+ * Initialize application when DOM is fully loaded
+ * @listens DOMContentLoaded
+ */
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🌍 CarbonTrack Application Initialized");
   initializeApp();
 });
 
+/**
+ * Initialize all application components
+ * @returns {void}
+ */
 function initializeApp() {
   // Initialize all components
   initLenisScroll();
@@ -32,6 +46,10 @@ function initializeApp() {
 // LENIS SMOOTH SCROLL
 // ========================================
 
+/**
+ * Initialize Lenis smooth scrolling
+ * @returns {void}
+ */
 function initLenisScroll() {
   if (typeof Lenis !== "undefined") {
     const lenis = new Lenis({
@@ -44,6 +62,10 @@ function initLenisScroll() {
       wheelMultiplier: 1,
     });
 
+    /**
+     * Animation frame callback for Lenis
+     * @param {number} time - Current timestamp
+     */
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -59,6 +81,11 @@ function initLenisScroll() {
 // NAVBAR FUNCTIONALITY
 // ========================================
 
+/**
+ * Initialize navbar functionality
+ * Handles scroll effects and smooth navigation
+ * @returns {void}
+ */
 function initNavbar() {
   const navbar = document.getElementById("navbar");
   const navLinks = document.querySelectorAll(".nav-link");
@@ -97,6 +124,10 @@ function initNavbar() {
 // MOBILE MENU
 // ========================================
 
+/**
+ * Initialize mobile menu functionality
+ * @returns {void}
+ */
 function initMobileMenu() {
   const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -113,6 +144,10 @@ function initMobileMenu() {
   }
 }
 
+/**
+ * Close mobile menu
+ * @returns {void}
+ */
 function closeMobileMenu() {
   const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -127,6 +162,11 @@ function closeMobileMenu() {
 // SCROLL ANIMATIONS
 // ========================================
 
+/**
+ * Initialize GSAP scroll animations
+ * Handles fade-in and stagger effects
+ * @returns {void}
+ */
 function initScrollAnimations() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     console.warn("⚠ GSAP or ScrollTrigger not loaded");
@@ -162,6 +202,7 @@ function initScrollAnimations() {
       scrollTrigger: {
         trigger: staggerItems[0],
         start: "top 80%",
+        end: "top 20%",
         once: true,
       },
     });
@@ -174,6 +215,11 @@ function initScrollAnimations() {
 // PARTICLE BACKGROUND
 // ========================================
 
+/**
+ * Initialize animated particle background
+ * Creates floating particles for visual effect
+ * @returns {void}
+ */
 function initParticleBackground() {
   const particleBg = document.getElementById("particle-bg");
   if (!particleBg) return;
@@ -205,6 +251,11 @@ function initParticleBackground() {
 // COUNTER ANIMATION
 // ========================================
 
+/**
+ * Initialize counter animations with IntersectionObserver
+ * Animates numbers when they scroll into view
+ * @returns {void}
+ */
 function initCounterAnimation() {
   const counters = document.querySelectorAll('[class*="counter"]');
 
@@ -215,6 +266,9 @@ function initCounterAnimation() {
 
     let current = 0;
 
+    /**
+     * Update counter animation frame
+     */
     const updateCounter = () => {
       current += increment;
       if (current < target) {
@@ -248,6 +302,11 @@ function initCounterAnimation() {
 // FAQ ACCORDION
 // ========================================
 
+/**
+ * Initialize FAQ accordion functionality
+ * Handles expand/collapse of FAQ items
+ * @returns {void}
+ */
 function initFAQAccordion() {
   const faqButtons = document.querySelectorAll(".faq-button");
 
@@ -280,6 +339,10 @@ function initFAQAccordion() {
 // FORM VALIDATION
 // ========================================
 
+/**
+ * Initialize form validation for all forms
+ * @returns {void}
+ */
 function initFormValidation() {
   const forms = document.querySelectorAll("form");
 
@@ -316,6 +379,11 @@ function initFormValidation() {
   console.log("✓ Form validation initialized");
 }
 
+/**
+ * Validate individual input field
+ * @param {HTMLInputElement} input - Input element to validate
+ * @returns {boolean} Validation result
+ */
 function validateInput(input) {
   if (!input.value) {
     input.classList.remove("is-valid");
@@ -338,6 +406,11 @@ function validateInput(input) {
   return true;
 }
 
+/**
+ * Handle form submission
+ * @param {HTMLFormElement} form - Form element
+ * @returns {void}
+ */
 function handleFormSubmit(form) {
   console.log("Form submitted:", form.id);
 
@@ -357,6 +430,11 @@ function handleFormSubmit(form) {
   }, 1500);
 }
 
+/**
+ * Show success message to user
+ * @param {string} message - Message to display
+ * @returns {void}
+ */
 function showSuccessMessage(message) {
   const messageEl = document.createElement("div");
   messageEl.className =
@@ -374,6 +452,11 @@ function showSuccessMessage(message) {
 // SCROLL TO TOP FUNCTIONALITY
 // ========================================
 
+/**
+ * Initialize scroll to top button
+ * Creates floating button for quick navigation to top
+ * @returns {void}
+ */
 function initScrollToTop() {
   const scrollToTopBtn = document.createElement("button");
   scrollToTopBtn.id = "scroll-to-top";
@@ -405,6 +488,11 @@ function initScrollToTop() {
 // PERFECT SCROLL INDICATOR
 // ========================================
 
+/**
+ * Initialize scroll progress indicator
+ * Shows reading progress at top of page
+ * @returns {void}
+ */
 function initPerfectScroll() {
   const scrollIndicator = document.createElement("div");
   scrollIndicator.className =
@@ -431,6 +519,11 @@ function initPerfectScroll() {
 // ACCESSIBILITY IMPROVEMENTS
 // ========================================
 
+/**
+ * Initialize accessibility features
+ * Adds ARIA labels and keyboard navigation
+ * @returns {void}
+ */
 function initAccessibility() {
   // Ensure all interactive elements have proper ARIA labels
   document.querySelectorAll("button:not([aria-label])").forEach((btn) => {
@@ -460,61 +553,76 @@ function initAccessibility() {
 // ========================================
 
 function initMonthlyTrendChart() {
-  const canvas = document.getElementById('monthly-trend-chart');
-  if (!canvas || typeof Chart === 'undefined') {
-    console.warn('⚠ Chart.js or canvas not available');
+  const canvas = document.getElementById("monthly-trend-chart");
+  if (!canvas || typeof Chart === "undefined") {
+    console.warn("⚠ Chart.js or canvas not available");
     return;
   }
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
 
   // Gradient fills
   const gradientBar = ctx.createLinearGradient(0, 0, 0, 320);
-  gradientBar.addColorStop(0, 'rgba(16, 185, 129, 0.92)');
-  gradientBar.addColorStop(0.5, 'rgba(6, 182, 212, 0.72)');
-  gradientBar.addColorStop(1, 'rgba(6, 182, 212, 0.18)');
+  gradientBar.addColorStop(0, "rgba(16, 185, 129, 0.92)");
+  gradientBar.addColorStop(0.5, "rgba(6, 182, 212, 0.72)");
+  gradientBar.addColorStop(1, "rgba(6, 182, 212, 0.18)");
 
   const gradientTarget = ctx.createLinearGradient(0, 0, 0, 320);
-  gradientTarget.addColorStop(0, 'rgba(167, 243, 208, 0.55)');
-  gradientTarget.addColorStop(1, 'rgba(167, 243, 208, 0.08)');
+  gradientTarget.addColorStop(0, "rgba(167, 243, 208, 0.55)");
+  gradientTarget.addColorStop(1, "rgba(167, 243, 208, 0.08)");
 
   const gradientLine = ctx.createLinearGradient(0, 0, canvas.width, 0);
-  gradientLine.addColorStop(0, '#10b981');
-  gradientLine.addColorStop(1, '#06b6d4');
+  gradientLine.addColorStop(0, "#10b981");
+  gradientLine.addColorStop(1, "#06b6d4");
 
-  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const emissions = [580, 620, 710, 650, 530, 482, 460, 490, 440, 410, 390, 365];
+  const labels = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const emissions = [
+    580, 620, 710, 650, 530, 482, 460, 490, 440, 410, 390, 365,
+  ];
   const target = new Array(12).fill(420);
 
   new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: {
       labels: labels,
       datasets: [
         {
-          label: 'CO₂ Emissions (kg)',
+          label: "CO₂ Emissions (kg)",
           data: emissions,
           backgroundColor: gradientBar,
           borderRadius: 6,
           borderSkipped: false,
           barPercentage: 0.6,
           categoryPercentage: 0.7,
-          hoverBackgroundColor: 'rgba(16, 185, 129, 1)',
+          hoverBackgroundColor: "rgba(16, 185, 129, 1)",
         },
         {
-          label: 'Target',
+          label: "Target",
           data: target,
-          type: 'line',
+          type: "line",
           borderColor: gradientLine,
           borderWidth: 2.5,
           borderDash: [6, 4],
           pointRadius: 0,
           pointHoverRadius: 6,
-          pointHoverBackgroundColor: '#10b981',
-          pointHoverBorderColor: '#fff',
+          pointHoverBackgroundColor: "#10b981",
+          pointHoverBorderColor: "#fff",
           pointHoverBorderWidth: 2,
           fill: {
-            target: 'origin',
+            target: "origin",
             above: gradientTarget,
           },
           tension: 0.4,
@@ -525,33 +633,33 @@ function initMonthlyTrendChart() {
       responsive: true,
       maintainAspectRatio: false,
       interaction: {
-        mode: 'index',
+        mode: "index",
         intersect: false,
       },
       animation: {
         duration: 1200,
-        easing: 'easeOutQuart',
+        easing: "easeOutQuart",
       },
       plugins: {
         legend: {
           display: false,
         },
         tooltip: {
-          backgroundColor: 'rgba(6, 20, 17, 0.92)',
-          titleColor: '#a7f3d0',
-          bodyColor: '#fff',
-          titleFont: { family: 'Poppins', weight: '600', size: 13 },
-          bodyFont: { family: 'Poppins', size: 13 },
+          backgroundColor: "rgba(6, 20, 17, 0.92)",
+          titleColor: "#a7f3d0",
+          bodyColor: "#fff",
+          titleFont: { family: "Poppins", weight: "600", size: 13 },
+          bodyFont: { family: "Poppins", size: 13 },
           padding: 14,
           cornerRadius: 8,
           displayColors: true,
           boxPadding: 6,
           callbacks: {
             label: function (context) {
-              if (context.dataset.label === 'Target') {
-                return 'Target: ' + context.parsed.y + ' kg';
+              if (context.dataset.label === "Target") {
+                return "Target: " + context.parsed.y + " kg";
               }
-              return 'Emissions: ' + context.parsed.y + ' kg';
+              return "Emissions: " + context.parsed.y + " kg";
             },
           },
         },
@@ -562,8 +670,8 @@ function initMonthlyTrendChart() {
             display: false,
           },
           ticks: {
-            color: '#64748b',
-            font: { family: 'Poppins', weight: '500', size: 12 },
+            color: "#64748b",
+            font: { family: "Poppins", weight: "500", size: 12 },
           },
           border: { display: false },
         },
@@ -572,14 +680,14 @@ function initMonthlyTrendChart() {
           min: 200,
           max: 800,
           grid: {
-            color: 'rgba(8, 28, 21, 0.06)',
+            color: "rgba(8, 28, 21, 0.06)",
             drawBorder: false,
           },
           ticks: {
-            color: '#64748b',
-            font: { family: 'Poppins', weight: '500', size: 12 },
+            color: "#64748b",
+            font: { family: "Poppins", weight: "500", size: 12 },
             callback: function (value) {
-              return value + ' kg';
+              return value + " kg";
             },
             stepSize: 100,
           },
@@ -589,7 +697,7 @@ function initMonthlyTrendChart() {
     },
   });
 
-  console.log('✓ Monthly trend chart initialized');
+  console.log("✓ Monthly trend chart initialized");
 }
 
 // ========================================
@@ -598,6 +706,9 @@ function initMonthlyTrendChart() {
 
 /**
  * Debounce function to optimize scroll and resize events
+ * @param {Function} func - Function to debounce
+ * @param {number} delay - Delay in milliseconds
+ * @returns {Function} Debounced function
  */
 function debounce(func, delay) {
   let timeoutId;
@@ -609,6 +720,9 @@ function debounce(func, delay) {
 
 /**
  * Throttle function
+ * @param {Function} func - Function to throttle
+ * @param {number} limit - Time limit in milliseconds
+ * @returns {Function} Throttled function
  */
 function throttle(func, limit) {
   let inThrottle;
@@ -623,6 +737,8 @@ function throttle(func, limit) {
 
 /**
  * Check if element is in viewport
+ * @param {HTMLElement} element - DOM element to check
+ * @returns {boolean} True if element is in viewport
  */
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
@@ -634,6 +750,9 @@ function isInViewport(element) {
 
 /**
  * Safe DOM manipulation with XSS prevention
+ * @param {HTMLElement} element - Element to update
+ * @param {string} html - HTML string to set
+ * @returns {string} Sanitized HTML
  */
 function safeSetHTML(element, html) {
   const temp = document.createElement("div");
@@ -643,6 +762,9 @@ function safeSetHTML(element, html) {
 
 /**
  * Log analytics
+ * @param {string} eventName - Name of the event
+ * @param {Object} eventData - Event data
+ * @returns {void}
  */
 function trackEvent(eventName, eventData = {}) {
   console.log(`📊 Event: ${eventName}`, eventData);

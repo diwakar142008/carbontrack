@@ -1,11 +1,34 @@
 /**
  * Dashboard Module
  * Manages dashboard data, KPI updates, and impact metrics
+ * @module dashboard
  */
 
+/**
+ * Maximum green score value
+ * @constant {number}
+ */
 const GREEN_SCORE_MAX = 100;
+
+/**
+ * Tree absorption rate in kg CO₂ per year
+ * @constant {number}
+ */
 const TREE_ABSORPTION_KG_PER_YEAR = 20;
+
+/**
+ * Maximum monthly CO₂ emissions threshold
+ * @constant {number}
+ */
 const MAX_MONTHLY_CO2 = 1200;
+
+/**
+ * Achievement level thresholds
+ * @type {Array<Object>}
+ * @property {string} level - Level name
+ * @property {number} min - Minimum score
+ * @property {number} max - Maximum score
+ */
 const LEVEL_THRESHOLDS = [
   { level: "Bronze", min: 0, max: 30 },
   { level: "Silver", min: 31, max: 50 },
@@ -14,6 +37,12 @@ const LEVEL_THRESHOLDS = [
   { level: "Diamond", min: 86, max: 100 },
 ];
 
+/**
+ * Calculate green score based on emissions
+ * @param {number} monthlyTotal - User's monthly CO₂ emissions
+ * @param {number} globalAverage - Global average monthly emissions
+ * @returns {number} Green score (0-100)
+ */
 function calculateGreenScore(monthlyTotal, globalAverage) {
   const ratio = monthlyTotal / globalAverage;
   const score = Math.max(
@@ -23,6 +52,11 @@ function calculateGreenScore(monthlyTotal, globalAverage) {
   return score;
 }
 
+/**
+ * Calculate consecutive days of below-average emissions
+ * @param {Object} savedData - Saved dashboard data
+ * @returns {number} Streak count
+ */
 function calculateStreak(savedData) {
   if (!savedData || !Array.isArray(savedData.dailyEmissions)) return 0;
   let streak = 0;
@@ -36,6 +70,11 @@ function calculateStreak(savedData) {
   return streak;
 }
 
+/**
+ * Get achievement level based on green score
+ * @param {number} score - Green score (0-100)
+ * @returns {Object} Level object with name and color
+ */
 function getLevel(score) {
   return (
     LEVEL_THRESHOLDS.find((t) => score >= t.min && score <= t.max) ||
@@ -43,6 +82,11 @@ function getLevel(score) {
   );
 }
 
+/**
+ * Calculate environmental impact metrics
+ * @param {Object} results - Carbon calculation results
+ * @returns {Object} Impact metrics (CO₂ saved, trees, energy, water)
+ */
 function getImpactMetrics(results) {
   const monthlyTotal = results.monthlyTotal || 0;
   const potentialSavings = results.potentialSavings || {
@@ -61,6 +105,10 @@ function getImpactMetrics(results) {
   };
 }
 
+/**
+ * Get current goal from localStorage
+ * @returns {Object|null} Goal object or null if not set
+ */
 function getCurrentProgress() {
   const stored = localStorage.getItem("carbontrack_goal");
   if (!stored) return null;
@@ -71,11 +119,23 @@ function getCurrentProgress() {
   }
 }
 
+/**
+ * Calculate goal completion percentage
+ * @param {number} current - Current value
+ * @param {number} target - Target value
+ * @returns {number} Completion percentage (0-100)
+ */
 function calculateCompletion(current, target) {
   if (target <= 0) return 0;
   return Math.min(100, Math.round((current / target) * 100));
 }
 
+/**
+ * Get goal status based on completion
+ * @param {number} current - Current value
+ * @param {number} target - Target value
+ * @returns {string} Status: completed, on-track, in-progress, needs-attention
+ */
 function getGoalStatus(current, target) {
   const completion = calculateCompletion(current, target);
   if (completion >= 100) return "completed";
@@ -84,6 +144,12 @@ function getGoalStatus(current, target) {
   return "needs-attention";
 }
 
+/**
+ * Set a new carbon reduction goal
+ * @param {number} target - Target CO₂ reduction in kg/month
+ * @param {string} unit - Unit of measurement
+ * @returns {Object} Goal object
+ */
 function setGoal(target, unit = "kg CO2/month") {
   const goal = {
     target,
@@ -94,11 +160,22 @@ function setGoal(target, unit = "kg CO2/month") {
   return goal;
 }
 
+/**
+ * Validate goal input value
+ * @param {string|number} value - Input value to validate
+ * @returns {boolean} True if valid
+ */
 function validateGoalInput(value) {
   const num = Number.parseFloat(value);
   return Number.isFinite(num) && num > 0 && num < MAX_MONTHLY_CO2;
 }
 
+/**
+ * Update goal progress display
+ * @param {Object} goal - Goal object
+ * @param {number} current - Current emissions value
+ * @returns {void}
+ */
 function updateGoalDisplay(goal, current) {
   const progressBar = document.getElementById("goal-progress-bar");
   const progressText = document.getElementById("goal-progress-text");
@@ -124,6 +201,12 @@ function updateGoalDisplay(goal, current) {
   }
 }
 
+/**
+ * Update entire dashboard with new results
+ * @param {Object} results - Carbon calculation results
+ * @param {Object} savedData - Previously saved dashboard data
+ * @returns {void}
+ */
 function updateDashboard(results, savedData = {}) {
   updateKPICards(results);
   updateImpactMetrics(results);
@@ -132,6 +215,11 @@ function updateDashboard(results, savedData = {}) {
   updateStreakDisplay(savedData);
 }
 
+/**
+ * Update KPI cards with emission values
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateKPICards(results) {
   const cards = {
     daily: document.getElementById("dashboard-daily"),
@@ -154,6 +242,11 @@ function updateKPICards(results) {
   }
 }
 
+/**
+ * Update environmental impact metrics
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateImpactMetrics(results) {
   const metrics = getImpactMetrics(results);
   const fields = {
@@ -171,6 +264,11 @@ function updateImpactMetrics(results) {
   });
 }
 
+/**
+ * Update green score display
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateGreenScore(results) {
   const score = calculateGreenScore(
     results.monthlyTotal,
@@ -188,12 +286,22 @@ function updateGreenScore(results) {
   }
 }
 
+/**
+ * Update goal section display
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateGoalSection(results) {
   const goal = getCurrentProgress();
   const current = results.monthlyTotal;
   updateGoalDisplay(goal, current);
 }
 
+/**
+ * Update streak display
+ * @param {Object} savedData - Saved dashboard data
+ * @returns {void}
+ */
 function updateStreakDisplay(savedData) {
   const streak = calculateStreak(savedData);
   const streakEl = document.getElementById("streak-count");

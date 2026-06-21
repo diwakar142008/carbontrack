@@ -1,8 +1,15 @@
 /**
  * Carbon Calculator Module
  * Pure calculation logic for carbon footprint analysis
+ * @module calculator
  */
 
+/**
+ * Emission factors for different activities (kg CO₂ per unit)
+ * Based on EPA and international standards
+ * @constant {Object}
+ * @type {Object}
+ */
 const EMISSION_FACTORS = Object.freeze({
   car: 0.411,
   publicTransport: 0.089,
@@ -15,17 +22,51 @@ const EMISSION_FACTORS = Object.freeze({
   waterPerLiter: 0.0003,
 });
 
+/**
+ * Weeks per month (average)
+ * @constant {number}
+ */
 const MONTHS_PER_WEEK = 4.33;
+
+/**
+ * Days per month (average)
+ * @constant {number}
+ */
 const DAYS_PER_MONTH = 30;
+
+/**
+ * Global average annual CO₂ emissions per person (kg)
+ * @constant {number}
+ */
 const GLOBAL_AVERAGE_ANNUAL_KG = 4800;
+
+/**
+ * CO₂ absorption rate per tree per year (kg)
+ * @constant {number}
+ */
 const TREE_ABSORPTION_KG_PER_YEAR = 20;
+
+/**
+ * Maximum monthly CO₂ emissions threshold
+ * @constant {number}
+ */
 const MAX_MONTHLY_CO2 = 1200;
 
+/**
+ * Convert value to positive number or zero
+ * @param {*} value - Value to convert
+ * @returns {number} Positive number or 0
+ */
 function toNumber(value) {
   const parsed = Number.parseFloat(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
 }
 
+/**
+ * Normalize user input to standard format
+ * @param {Object} data - Raw user input data
+ * @returns {Object} Normalized input with all fields
+ */
 function normalizeInput(data = {}) {
   return {
     carKm: toNumber(data.carKm ?? data.transport ?? data["car-km"]),
@@ -40,11 +81,21 @@ function normalizeInput(data = {}) {
   };
 }
 
+/**
+ * Extract form data from HTML form
+ * @param {HTMLFormElement} form - Form element
+ * @returns {Object} Normalized form data
+ */
 function getFormData(form) {
   const formData = new FormData(form);
   return normalizeInput(Object.fromEntries(formData));
 }
 
+/**
+ * Calculate transport-related emissions
+ * @param {Object} data - Normalized input data
+ * @returns {Object} Transport emissions breakdown
+ */
 function calculateTransportEmissions(data) {
   return {
     car: data.carKm * MONTHS_PER_WEEK * EMISSION_FACTORS.car,
@@ -54,6 +105,11 @@ function calculateTransportEmissions(data) {
   };
 }
 
+/**
+ * Calculate energy-related emissions
+ * @param {Object} data - Normalized input data
+ * @returns {Object} Energy emissions breakdown
+ */
 function calculateEnergyEmissions(data) {
   return {
     electricity: data.electricity * EMISSION_FACTORS.electricity,
@@ -61,6 +117,11 @@ function calculateEnergyEmissions(data) {
   };
 }
 
+/**
+ * Calculate food-related emissions
+ * @param {Object} data - Normalized input data
+ * @returns {Object} Food emissions breakdown
+ */
 function calculateFoodEmissions(data) {
   return {
     meat: data.meat * MONTHS_PER_WEEK * EMISSION_FACTORS.meatServing,
@@ -68,18 +129,39 @@ function calculateFoodEmissions(data) {
   };
 }
 
+/**
+ * Calculate water-related emissions
+ * @param {Object} data - Normalized input data
+ * @returns {number} Water emissions
+ */
 function calculateWaterEmissions(data) {
   return data.water * EMISSION_FACTORS.waterPerLiter * DAYS_PER_MONTH;
 }
 
+/**
+ * Sum all values in an object
+ * @param {Object} values - Object with numeric values
+ * @returns {number} Sum of all values
+ */
 function sumValues(values) {
   return Object.values(values).reduce((sum, value) => sum + value, 0);
 }
 
+/**
+ * Calculate percentage
+ * @param {number} part - Part value
+ * @param {number} total - Total value
+ * @returns {number} Percentage (0-100)
+ */
 function getPercent(part, total) {
   return total > 0 ? Math.round((part / total) * 100) : 0;
 }
 
+/**
+ * Calculate emissions breakdown by category
+ * @param {Object} totals - Emissions totals
+ * @returns {Object} Breakdown percentages
+ */
 function calculateBreakdown(totals) {
   return {
     transport: getPercent(totals.transport, totals.monthly),
@@ -90,6 +172,14 @@ function calculateBreakdown(totals) {
   };
 }
 
+/**
+ * Calculate potential CO₂ savings from recommended actions
+ * @param {Object} data - Normalized input data
+ * @param {Object} transportEmissions - Transport emissions breakdown
+ * @param {Object} energyEmissions - Energy emissions breakdown
+ * @param {Object} foodEmissions - Food emissions breakdown
+ * @returns {Object} Potential savings by category
+ */
 function calculatePotentialSavings(
   data,
   transportEmissions,
@@ -102,7 +192,10 @@ function calculatePotentialSavings(
     data.meat > 0
       ? foodEmissions.meat * 0.5 * 12 + foodEmissions.vegan * 0.25 * 12
       : 0;
-  const water = data.water > 0 ? data.water * EMISSION_FACTORS.waterPerLiter * DAYS_PER_MONTH * 12 * 0.3 : 0;
+  const water =
+    data.water > 0
+      ? data.water * EMISSION_FACTORS.waterPerLiter * DAYS_PER_MONTH * 12 * 0.3
+      : 0;
   const total = transport + energy + food + water;
 
   return {
@@ -115,6 +208,11 @@ function calculatePotentialSavings(
   };
 }
 
+/**
+ * Calculate complete carbon emissions from raw data
+ * @param {Object} rawData - Raw user input data
+ * @returns {Object} Complete emissions results with breakdowns
+ */
 function calculateEmissions(rawData = {}) {
   const data = normalizeInput(rawData);
   const transportBreakdown = calculateTransportEmissions(data);
@@ -130,7 +228,12 @@ function calculateEmissions(rawData = {}) {
     waste: wasteEmissions,
     water: waterEmissions,
   };
-  totals.monthly = totals.transport + totals.energy + totals.food + totals.waste + totals.water;
+  totals.monthly =
+    totals.transport +
+    totals.energy +
+    totals.food +
+    totals.waste +
+    totals.water;
 
   const annualTotal = totals.monthly * 12;
   const comparison =
@@ -165,10 +268,17 @@ function calculateEmissions(rawData = {}) {
   };
 }
 
+/**
+ * Generate impact-based recommendations
+ * @param {Object} results - Carbon calculation results
+ * @returns {Array<Object>} List of recommendations
+ */
 function getImpactRecommendations(results) {
   const recommendations = [];
 
-  if (results.transportBreakdown.car > results.transportBreakdown.publicTransport) {
+  if (
+    results.transportBreakdown.car > results.transportBreakdown.publicTransport
+  ) {
     recommendations.push({
       title: "Switch to Public Transport",
       description:
@@ -243,6 +353,11 @@ function getImpactRecommendations(results) {
   return recommendations;
 }
 
+/**
+ * Generate personalized recommendations sorted by priority
+ * @param {Object} results - Carbon calculation results
+ * @returns {Array<Object>} Sorted recommendations (max 5)
+ */
 function generateRecommendations(results) {
   const recommendations = getImpactRecommendations(results);
 
@@ -265,6 +380,12 @@ function generateRecommendations(results) {
     .slice(0, 5);
 }
 
+/**
+ * Animate counter from 0 to target value
+ * @param {HTMLElement} element - DOM element to update
+ * @param {number} target - Target value
+ * @returns {void}
+ */
 function animateCounter(element, target) {
   if (!element) return;
 
@@ -288,6 +409,11 @@ function animateCounter(element, target) {
   requestAnimationFrame(update);
 }
 
+/**
+ * Update live summary display with results
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateLiveSummary(results) {
   const liveTotalEl = document.getElementById("result-co2");
   const liveEquivalentEl = document.getElementById("result-eq");
@@ -305,7 +431,10 @@ function updateLiveSummary(results) {
     const circumference = 2 * Math.PI * 90;
     const score = Math.max(
       0,
-      Math.min(100, Math.round((results.monthlyTotal / results.globalAverage) * 100)),
+      Math.min(
+        100,
+        Math.round((results.monthlyTotal / results.globalAverage) * 100),
+      ),
     );
     progressCircle.style.strokeDashoffset =
       circumference - (score / 100) * circumference;
@@ -316,6 +445,11 @@ function updateLiveSummary(results) {
   }
 }
 
+/**
+ * Update dashboard summary section
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateDashboardSummary(results) {
   const resultsSection = document.getElementById("results-section");
   if (!resultsSection) return;
@@ -335,11 +469,21 @@ function updateDashboardSummary(results) {
   resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+/**
+ * Display calculation results to user
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function displayResults(results) {
   updateLiveSummary(results);
   updateDashboardSummary(results);
 }
 
+/**
+ * Update breakdown doughnut chart
+ * @param {Object} breakdown - Emissions breakdown percentages
+ * @returns {void}
+ */
 function updateBreakdownChart(breakdown) {
   const chartCanvas = document.getElementById("breakdown-chart");
   if (!chartCanvas || typeof Chart === "undefined") return;
@@ -384,6 +528,12 @@ function updateBreakdownChart(breakdown) {
   });
 }
 
+/**
+ * Create recommendation card element
+ * @param {Object} rec - Recommendation object
+ * @param {number} index - Index for animation delay
+ * @returns {HTMLElement} Recommendation card element
+ */
 function createRecommendationElement(rec, index) {
   const recEl = document.createElement("div");
   recEl.className =
@@ -416,16 +566,28 @@ function createRecommendationElement(rec, index) {
   return recEl;
 }
 
+/**
+ * Update recommendations display
+ * @param {Object} results - Carbon calculation results
+ * @returns {void}
+ */
 function updateRecommendations(results) {
   const recommendationsContainer = document.getElementById("recommendations");
   if (!recommendationsContainer) return;
 
   recommendationsContainer.replaceChildren();
   generateRecommendations(results).forEach((rec, index) => {
-    recommendationsContainer.appendChild(createRecommendationElement(rec, index));
+    recommendationsContainer.appendChild(
+      createRecommendationElement(rec, index),
+    );
   });
 }
 
+/**
+ * Handle calculator form submission
+ * @param {Event} event - Form submit event
+ * @returns {void}
+ */
 function handleCalculatorSubmit(event) {
   event.preventDefault();
 
@@ -442,6 +604,10 @@ function handleCalculatorSubmit(event) {
   }
 }
 
+/**
+ * Initialize calculator on page load
+ * @returns {void}
+ */
 function initializeCalculator() {
   const calculatorForm = document.getElementById("carbon-calculator");
   if (!calculatorForm) return;
